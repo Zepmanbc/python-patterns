@@ -4,7 +4,7 @@
 """
 http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html
 
-*TL;DR80
+*TL;DR
 Separates an algorithm from an object structure on which it operates.
 
 An interesting recipe could be found in
@@ -56,21 +56,21 @@ class Visitor(object):
 
 
 def main():
-    a = A()
-    b = B()
-    c = C()
-    visitor = Visitor()
-    visitor.visit(a)
-    visitor.visit(b)
-    visitor.visit(c)
+    """
+    >>> a, b, c = A(), B(), C()
+    >>> visitor = Visitor()
+
+    >>> visitor.visit(a)
+    generic_visit A
+
+    >>> visitor.visit(b)
+    visit_B B
+
+    >>> visitor.visit(c)
+    visit_B C
+    """
 
 
 if __name__ == "__main__":
-    main()
-
-
-OUTPUT = """
-generic_visit A
-visit_B B
-visit_B C
-"""
+    import doctest
+    doctest.testmod()

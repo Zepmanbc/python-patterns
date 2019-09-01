@@ -13,7 +13,7 @@ __Creational Patterns__:
 | [abstract_factory](patterns/creational/abstract_factory.py) | use a generic function with specific factories |
 | [borg](patterns/creational/borg.py) | a singleton with shared-state among instances |
 | [builder](patterns/creational/builder.py) | instead of using multiple constructors, builder object receives parameters and returns constructed objects |
-| [factory_method](patterns/creational/factory_method.py) | delegate a specialized function/method to create instances |
+| [factory](patterns/creational/factory.py) | delegate a specialized function/method to create instances |
 | [lazy_evaluation](patterns/creational/lazy_evaluation.py) | lazily-evaluated property pattern in Python |
 | [pool](patterns/creational/pool.py) | preinstantiate and maintain a group of instances of the same type |
 | [prototype](patterns/creational/prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
@@ -117,4 +117,10 @@ When everything else is done - update corresponding part of README.
 
 
 ##### Travis CI
-Please run `flake8` and `pytest` commands locally to be sure your changes will pass CI .
+Please run `tox` or `tox -e ci37` before submitting a patch to be sure your changes will pass CI.
+
+You can also run `flake8` or `pytest` commands manually. Examples can be found in `tox.ini`.
+
+## Contributing via issue triage [![Open Source Helpers](https://www.codetriage.com/faif/python-patterns/badges/users.svg)](https://www.codetriage.com/faif/python-patterns)
+
+You can triage issues and pull requests which may include reproducing bug reports or asking for vital information, such as version numbers or reproduction instructions. If you would like to start triaging issues, one easy way to get started is to [subscribe to python-patterns on CodeTriage](https://www.codetriage.com/faif/python-patterns).

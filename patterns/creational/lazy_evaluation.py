@@ -18,7 +18,7 @@ https://github.com/Pylons/pyramid/blob/7909e9503cdfc6f6e84d2c7ace1d3c03ca1d8b73/
 werkzeug
 https://github.com/pallets/werkzeug/blob/5a2bf35441006d832ab1ed5a31963cbc366c99ac/werkzeug/utils.py#L35
 
-*TL;DR80
+*TL;DR
 Delays the eval of an expr until its value is needed and avoids repeated evals.
 """
 
@@ -70,30 +70,39 @@ class Person(object):
 
 
 def main():
-    Jhon = Person('Jhon', 'Coder')
-    print(u"Name: {0}    Occupation: {1}".format(Jhon.name, Jhon.occupation))
-    print(u"Before we access `relatives`:")
-    print(Jhon.__dict__)
-    print(u"Jhon's relatives: {0}".format(Jhon.relatives))
-    print(u"After we've accessed `relatives`:")
-    print(Jhon.__dict__)
-    print(Jhon.parents)
-    print(Jhon.__dict__)
-    print(Jhon.parents)
-    print(Jhon.call_count2)
+    """
+    >>> Jhon = Person('Jhon', 'Coder')
+
+    >>> Jhon.name
+    'Jhon'
+    >>> Jhon.occupation
+    'Coder'
+
+    # Before we access `relatives`
+    >>> sorted(Jhon.__dict__.items())
+    [('call_count2', 0), ('name', 'Jhon'), ('occupation', 'Coder')]
+
+    >>> Jhon.relatives
+    'Many relatives.'
+
+    # After we've accessed `relatives`
+    >>> sorted(Jhon.__dict__.items())
+    [('call_count2', 0), ..., ('relatives', 'Many relatives.')]
+
+    >>> Jhon.parents
+    'Father and mother'
+
+    >>> sorted(Jhon.__dict__.items())
+    [('_lazy__parents', 'Father and mother'), ('call_count2', 1), ..., ('relatives', 'Many relatives.')]
+
+    >>> Jhon.parents
+    'Father and mother'
+
+    >>> Jhon.call_count2
+    1
+    """
 
 
-if __name__ == '__main__':
-    main()
-
-### OUTPUT ###
-# Name: Jhon    Occupation: Coder
-# Before we access `relatives`:
-# {'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
-# Jhon's relatives: Many relatives.
-# After we've accessed `relatives`:
-# {'relatives': 'Many relatives.', 'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
-# Father and mother
-# {'_lazy__parents': 'Father and mother', 'relatives': 'Many relatives.', 'call_count2': 1, 'name': 'Jhon', 'occupation': 'Coder'}  # noqa flake8
-# Father and mother
-# 1
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(optionflags=doctest.ELLIPSIS)
